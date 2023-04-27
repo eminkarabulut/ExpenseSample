@@ -1,0 +1,30 @@
+﻿@model List<ReportExpenseViewModel>
+
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="display-4">Report Expenses</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ReportExpenseViewModel item in Model)
+                {
+                    <tr>
+                        <td>@item.Username</td>
+                        <td>@item.Total.ToString("C2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

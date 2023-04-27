@@ -1,0 +1,62 @@
+﻿@using ExpenseSample.Helpers;
+@model AddExpenseViewModel
+
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="display-4">Adding Expense</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <hr />
+        <form method="post" class="mt-2 text-center">
+            <div class="text-danger small mb-3" asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control input-sm" placeholder="Title" asp-for="Title" />
+                <label class="text-muted small" asp-for="Title">Title</label>
+                <span class="text-danger small" asp-validation-for="Title"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control input-sm" placeholder="Desc" asp-for="Description" />
+                <label class="text-muted small" asp-for="Description"></label>
+                <span class="text-danger small" asp-validation-for="Description"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control input-sm" placeholder=".." asp-for="Date">
+                <label class="text-muted small" asp-for="Date"></label>
+                <span class="text-danger small" asp-validation-for="Date"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control input-sm" placeholder="akaryakıt" asp-for="Category">
+                <label class="text-muted small" asp-for="Category"></label>
+                <span class="text-danger small" asp-validation-for="Category"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control input-sm" placeholder="10" asp-for="Amount">
+                <label class="text-muted small" asp-for="Amount"></label>
+                <span class="text-danger small" asp-validation-for="Amount"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2 w-100">Save</button>
+        </form>
+    </div>
+    <div class="col-8">
+        @foreach (Expense item in Model.Expenses)
+        {
+            <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title (@item.Date?.ToShortDateString())</h5>
+                <p class="card-text">@item.Description</p>
+                <small>@item.Amount.ToString("C2") | @item.Category</small>
+            </div>
+        </div>
+        }
+    </div>
+</div>
